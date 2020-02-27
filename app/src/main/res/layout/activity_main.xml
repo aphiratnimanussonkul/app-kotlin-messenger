@@ -35,6 +35,7 @@
         app:layout_constraintEnd_toEndOf="@+id/username_register"
         app:layout_constraintStart_toStartOf="@+id/username_register"
         app:layout_constraintTop_toBottomOf="@+id/username_register" />
+
     <EditText
         android:id="@+id/password_register"
         android:layout_width="0dp"
@@ -50,15 +51,30 @@
         android:layout_marginTop="25dp"
         />
 
+    <EditText
+        android:id="@+id/confirm_password_register"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@android:color/background_light"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/password_register"
+        app:layout_constraintStart_toStartOf="@+id/password_register"
+        app:layout_constraintEnd_toEndOf="@+id/password_register"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="25dp"
+        />
+
     <Button
         android:id="@+id/button_register"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="Register"
         android:textColor="@android:color/background_light"
-        app:layout_constraintTop_toBottomOf="@+id/password_register"
-        app:layout_constraintStart_toStartOf="@+id/password_register"
-        app:layout_constraintEnd_toEndOf="@+id/password_register"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_password_register"
+        app:layout_constraintStart_toStartOf="@+id/confirm_password_register"
+        app:layout_constraintEnd_toEndOf="@+id/confirm_password_register"
         android:layout_marginTop="25dp"
         android:background="@color/colorAccent"
         />
