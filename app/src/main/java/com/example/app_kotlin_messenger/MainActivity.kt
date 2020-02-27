@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private fun performRegister() {
         val email = email_register.text.toString()
         val password = password_register.text.toString()
+        val confirmPassword = confirm_password_register.text.toString()
 
         if (email.isEmpty()) {
             Toast.makeText(baseContext, "Please enter email", Toast.LENGTH_SHORT).show()
@@ -38,6 +39,14 @@ class MainActivity : AppCompatActivity() {
         }
         if (password.isEmpty()) {
             Toast.makeText(baseContext, "Please enter password", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (confirmPassword.isEmpty()) {
+            Toast.makeText(baseContext, "Please enter confirm password", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!confirmPassword.equals(password)) {
+            Toast.makeText(baseContext, "Password mismatch", Toast.LENGTH_SHORT).show()
             return
         }
 
