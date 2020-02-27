@@ -20,3 +20,7 @@
 * Open file build.gradle(Module: app)
 >Add "apply plugin: 'com.google.gms.google-services'" at the top of file <br/>
 >Check at dependencies add "implementation 'com.google.firebase:firebase-analytics:17.2.2'"
+* At Andriod Studio Click "Gradle Sync"
+### Firebase Authentication
+* Open file build.gradle(Module :app) 
+* Check at dependencies add "implementation 'com.google.firebase:firebase-auth:19.2.0'"

@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
             val password = password_register.text.toString()
 
             Log.i("Main Activity", "Username: " + username + " Email: " + email + " Password: " + password)
+            
         }
 
         already_have_account.setOnClickListener {
