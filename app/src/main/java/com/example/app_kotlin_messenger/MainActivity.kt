@@ -23,8 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         already_have_account.setOnClickListener {
             Log.i("Main Activity", "Already have account")
-            val logInIntent = Intent(this, LogInActivity::class.java)
-            startActivity(logInIntent)
+            startActivityLogin()
         }
     }
 
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                         "Created user with email and password: success uid: ${it.result!!.user!!.uid}"
                     )
                     Toast.makeText(baseContext, "Created user success", Toast.LENGTH_SHORT).show()
-                    val user = it.result!!.user
+                    startActivityLogin()
                     return@addOnCompleteListener
                 }
             }.addOnFailureListener {
@@ -67,5 +66,10 @@ class MainActivity : AppCompatActivity() {
                 return@addOnFailureListener
             }
 
+    }
+
+    private fun startActivityLogin() {
+        val logInIntent = Intent(this, LogInActivity::class.java)
+        startActivity(logInIntent)
     }
 }
