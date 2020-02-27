@@ -18,5 +18,5 @@
 >Check at buildscript.dependencies add "classpath 'com.google.gms:google-services:4.3.3'"
 * Check at allprojects.repositories find "google()" if not add it
 * Open file build.gradle(Module: app)
->Add "apply plugin: 'com.google.gms.google-services'" at the top of file
+>Add "apply plugin: 'com.google.gms.google-services'" at the top of file <br/>
 >Check at dependencies add "implementation 'com.google.firebase:firebase-analytics:17.2.2'"
