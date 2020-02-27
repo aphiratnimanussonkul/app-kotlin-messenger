@@ -20,7 +20,6 @@
         android:paddingRight="16dp"
         android:hint="Username"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="25dp"
         />
 
     <EditText
