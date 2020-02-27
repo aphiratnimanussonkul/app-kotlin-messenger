@@ -46,6 +46,7 @@ tools:context=".LogInActivity">
         android:textColor="@android:color/background_light"
         />
     <TextView
+        android:id="@+id/back_to_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
