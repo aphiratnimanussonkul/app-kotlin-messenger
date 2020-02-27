@@ -19,5 +19,9 @@ class MainActivity : AppCompatActivity() {
 
             Log.i("Main Activity", "Username: " + username + " Email: " + email + " Password: " + password)
         }
+
+        already_have_account.setOnClickListener {
+            Log.i("Main Activity", "Already have account")
+        }
     }
 }
