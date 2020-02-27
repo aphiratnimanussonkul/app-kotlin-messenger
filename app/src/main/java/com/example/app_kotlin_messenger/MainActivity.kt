@@ -1,7 +1,11 @@
 package com.example.app_kotlin_messenger
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    private var selectPhotoUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +28,28 @@ class MainActivity : AppCompatActivity() {
 
 
         already_have_account.setOnClickListener {
-            Log.i("Main Activity", "Already have account")
+            Log.d("Main Activity", "Already have account")
             startActivityLogin()
+        }
+
+        button_select_photo.setOnClickListener {
+            Log.d("Main Activity", "Try to show photo selector")
+            val intentSelectPhoto = Intent(Intent.ACTION_PICK)
+            intentSelectPhoto.type = "image/*"
+            startActivityForResult(intentSelectPhoto, 0)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+            Log.d("RegisterActivity", "Photo was selected")
+
+            selectPhotoUri = data.data
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectPhotoUri)
+            val bitmapDrawable = BitmapDrawable(bitmap)
+            button_select_photo.setBackgroundDrawable(bitmapDrawable)
         }
     }
 
