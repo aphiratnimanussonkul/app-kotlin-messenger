@@ -1,10 +1,13 @@
 package com.example.app_kotlin_messenger
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,9 +21,34 @@ class MainActivity : AppCompatActivity() {
             val email = email_register.text.toString()
             val password = password_register.text.toString()
 
-            Log.i("Main Activity", "Username: " + username + " Email: " + email + " Password: " + password)
-            
+            if (email.isEmpty()) {
+                Toast.makeText(baseContext, "Please enter email", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (password.isEmpty()) {
+                Toast.makeText(baseContext, "Please enter password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.d(
+                            "Main Activity",
+                            "Created user with email and password: success uid: ${it.result!!.user!!.uid}"
+                        )
+                        Toast.makeText(baseContext, "Created user success", Toast.LENGTH_SHORT).show()
+                        val user = it.result!!.user
+                        return@addOnCompleteListener
+                    }
+                }.addOnFailureListener {
+                    Log.w("Main Activity", "Created user with email and password: failed")
+                    Toast.makeText(baseContext, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
+                    return@addOnFailureListener
+                }
+
         }
+
 
         already_have_account.setOnClickListener {
             Log.i("Main Activity", "Already have account")
