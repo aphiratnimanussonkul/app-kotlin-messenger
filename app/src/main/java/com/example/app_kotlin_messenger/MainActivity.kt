@@ -1,5 +1,6 @@
 package com.example.app_kotlin_messenger
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         already_have_account.setOnClickListener {
             Log.i("Main Activity", "Already have account")
+            val logInIntent = Intent(this, LogInActivity::class.java)
+            startActivity(logInIntent)
         }
     }
 }
