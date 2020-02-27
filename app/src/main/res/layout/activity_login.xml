@@ -37,13 +37,14 @@ tools:context=".LogInActivity">
         android:id="@+id/button_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="@color/colorAccent"
         android:text="log in"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="@+id/password_login"
         app:layout_constraintEnd_toEndOf="@+id/password_login"
         app:layout_constraintTop_toBottomOf="@+id/password_login"
         android:textColor="@android:color/background_light"
+        android:background="@drawable/rouned_button_register_login"
+
         />
     <TextView
         android:id="@+id/back_to_register"

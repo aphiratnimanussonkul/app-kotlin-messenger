@@ -71,11 +71,12 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="Register"
+        android:textColor="@android:color/background_light"
         app:layout_constraintTop_toBottomOf="@+id/confirm_password_register"
         app:layout_constraintStart_toStartOf="@+id/confirm_password_register"
         app:layout_constraintEnd_toEndOf="@+id/confirm_password_register"
         android:layout_marginTop="25dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/rouned_button_register_login"
         />
 
     <TextView
