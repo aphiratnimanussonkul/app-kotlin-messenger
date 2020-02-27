@@ -17,36 +17,7 @@ class MainActivity : AppCompatActivity() {
 
 
         button_register.setOnClickListener {
-            val username = username_register.text.toString()
-            val email = email_register.text.toString()
-            val password = password_register.text.toString()
-
-            if (email.isEmpty()) {
-                Toast.makeText(baseContext, "Please enter email", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            if (password.isEmpty()) {
-                Toast.makeText(baseContext, "Please enter password", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        Log.d(
-                            "Main Activity",
-                            "Created user with email and password: success uid: ${it.result!!.user!!.uid}"
-                        )
-                        Toast.makeText(baseContext, "Created user success", Toast.LENGTH_SHORT).show()
-                        val user = it.result!!.user
-                        return@addOnCompleteListener
-                    }
-                }.addOnFailureListener {
-                    Log.w("Main Activity", "Created user with email and password: failed")
-                    Toast.makeText(baseContext, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
-                    return@addOnFailureListener
-                }
-
+            performRegister()
         }
 
 
@@ -55,5 +26,37 @@ class MainActivity : AppCompatActivity() {
             val logInIntent = Intent(this, LogInActivity::class.java)
             startActivity(logInIntent)
         }
+    }
+
+    private fun performRegister() {
+        val email = email_register.text.toString()
+        val password = password_register.text.toString()
+
+        if (email.isEmpty()) {
+            Toast.makeText(baseContext, "Please enter email", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (password.isEmpty()) {
+            Toast.makeText(baseContext, "Please enter password", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Log.d(
+                        "Main Activity",
+                        "Created user with email and password: success uid: ${it.result!!.user!!.uid}"
+                    )
+                    Toast.makeText(baseContext, "Created user success", Toast.LENGTH_SHORT).show()
+                    val user = it.result!!.user
+                    return@addOnCompleteListener
+                }
+            }.addOnFailureListener {
+                Log.w("Main Activity", "Created user with email and password: failed")
+                Toast.makeText(baseContext, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
+                return@addOnFailureListener
+            }
+
     }
 }
