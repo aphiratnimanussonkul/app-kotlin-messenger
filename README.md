@@ -27,3 +27,5 @@
 ### Firebase Storage
 * At Firebase Storage edit rule "allow read, write"
 * Check at dependencies add "implementation 'com.google.firebase:firebase-storage:19.1.1'"
+### Firebase FireStore
+* Check at dependencies add "implementation 'com.google.firebase:firebase-firestore:21.4.0'"
