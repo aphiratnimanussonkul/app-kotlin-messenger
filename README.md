@@ -38,4 +38,13 @@
 * Open file build.gradle (Module :app)
 * Check at dependencies add "implementation 'de.hdodenhof:circleimageview:3.1.0'"
 * Don't forget to click Sync Now
+### Recycle View and Library
+#### Groupie: Groupie is a simple, flexible library for complex RecyclerView layouts
+* Open file build.gradle (Module :app)
+* Check at dependencies add "implementation "com.xwray:groupie:2.7.0""
+* Don't forget to click Sync Now
+#### Picasso: A powerful image downloading and caching library for Android
+* Open file build.gradle (Module :app)
+* Check at dependencies add "implementation 'com.squareup.picasso:picasso:2.71828'"
+* Don't forget to click Sync Now
 
