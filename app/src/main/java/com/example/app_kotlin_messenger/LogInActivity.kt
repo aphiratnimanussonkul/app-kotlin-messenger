@@ -1,5 +1,6 @@
 package com.example.app_kotlin_messenger
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -41,6 +42,7 @@ class LogInActivity: AppCompatActivity() {
                 if (it.isSuccessful) {
                     Log.d("LogIn Activity", "Sign In success: ${it.result!!.user!!.uid}")
                     Toast.makeText(baseContext, "Sign In successfully!", Toast.LENGTH_SHORT).show()
+                    startActivityLatestMessageActivity()
                     return@addOnCompleteListener
                 }
             }
@@ -49,5 +51,11 @@ class LogInActivity: AppCompatActivity() {
                 Toast.makeText(baseContext, "Sign In failed!", Toast.LENGTH_SHORT).show()
                 return@addOnFailureListener
             }
+    }
+
+    private fun startActivityLatestMessageActivity() {
+        val intent = Intent(this, LatestMessageActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
     }
 }
