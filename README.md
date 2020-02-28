@@ -24,8 +24,18 @@
 ### Firebase Authentication
 * Open file build.gradle(Module :app) 
 * Check at dependencies add "implementation 'com.google.firebase:firebase-auth:19.2.0'"
+* Don't forget to click Sync Now
 ### Firebase Storage
 * At Firebase Storage edit rule "allow read, write"
+* Open file build.gradle (Module :app)
 * Check at dependencies add "implementation 'com.google.firebase:firebase-storage:19.1.1'"
+* Don't forget to click Sync Now
 ### Firebase FireStore
+* Open file build.gradle (Module :app)
 * Check at dependencies add "implementation 'com.google.firebase:firebase-firestore:21.4.0'"
+* Don't forget to click Sync Now
+### Cycle Image View
+* Open file build.gradle (Module :app)
+* Check at dependencies add "implementation 'de.hdodenhof:circleimageview:3.1.0'"
+* Don't forget to click Sync Now
+
