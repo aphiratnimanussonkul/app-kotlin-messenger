@@ -3,6 +3,7 @@ package com.example.app_kotlin_messenger
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import com.google.firebase.auth.FirebaseAuth
 
 class LatestMessageActivity : AppCompatActivity() {
@@ -12,6 +13,12 @@ class LatestMessageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_latest_message)
 
         verifyUserIsLoggedIn()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.nav_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+
     }
 
     private fun verifyUserIsLoggedIn() {
