@@ -10,7 +10,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.math.log
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -74,6 +78,10 @@ class RegisterActivity : AppCompatActivity() {
             Toast.makeText(baseContext, "Password mismatch", Toast.LENGTH_SHORT).show()
             return
         }
+        if (selectPhotoUri == null) {
+            Toast.makeText(baseContext, "Please select your image profile", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
@@ -83,6 +91,7 @@ class RegisterActivity : AppCompatActivity() {
                         "Created user with email and password: success uid: ${it.result!!.user!!.uid}"
                     )
                     Toast.makeText(baseContext, "Created user success", Toast.LENGTH_SHORT).show()
+                    uploadImageToFirebaseStorage()
                     startActivityLogin()
                     return@addOnCompleteListener
                 }
@@ -98,4 +107,41 @@ class RegisterActivity : AppCompatActivity() {
         val logInIntent = Intent(this, LogInActivity::class.java)
         startActivity(logInIntent)
     }
+
+    private fun uploadImageToFirebaseStorage() {
+        val fileName = UUID.randomUUID().toString()
+
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage.reference
+        val folderRef = storageRef.child("/images-profile")
+        val imageRef = folderRef.child(fileName)
+
+
+        imageRef.putFile(selectPhotoUri!!)
+            .addOnSuccessListener {
+                Log.d("RegisterActivity", "Upload profile image success: ${it.metadata!!.path}")
+                imageRef.downloadUrl.addOnSuccessListener {
+                    saveUserToFirebaseDatabase(it.toString())
+                }
+            }
+            .addOnFailureListener {
+                Log.w("RegisterActivity", "Upload profile image failed: ${it.message}")
+            }
+    }
+
+    private fun saveUserToFirebaseDatabase(imageProfile: String) {
+        val uid = FirebaseAuth.getInstance().uid
+        val database = FirebaseFirestore.getInstance()
+        val collection = database.collection("users")
+        val user = User(username = username_register.text.toString(), uid = uid!!, imageProfile = imageProfile)
+        collection.add(user)
+            .addOnSuccessListener {
+                Log.d("RegisterActivity", "Save user success: ${it.id}")
+            }
+            .addOnFailureListener {
+                Log.w("RegisterActivity", "Save user failed ${it.message}")
+            }
+    }
 }
+
+class User(val username: String, val uid: String, val imageProfile: String)
