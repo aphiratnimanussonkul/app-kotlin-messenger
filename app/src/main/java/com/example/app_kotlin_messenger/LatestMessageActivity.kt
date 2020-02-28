@@ -30,7 +30,7 @@ class LatestMessageActivity : AppCompatActivity() {
                 startLogInActivity()
             }
             R.id.new_message_menu -> {
-
+                startActivityNewMessage()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -46,6 +46,11 @@ class LatestMessageActivity : AppCompatActivity() {
     private fun startLogInActivity() {
         val intent = Intent(this, LogInActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK.or(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+    }
+
+    private fun startActivityNewMessage() {
+        val intent = Intent(this, NewMessageActivity::class.java)
         startActivity(intent)
     }
 }
