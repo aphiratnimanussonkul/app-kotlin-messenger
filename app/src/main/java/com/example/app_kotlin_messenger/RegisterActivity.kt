@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
 
         already_have_account.setOnClickListener {
             Log.d("RegisterActivity", "Already have account")
-            startActivityLogin()
+            finishActivityRegister()
         }
 
         button_select_photo.setOnClickListener {
@@ -91,7 +91,7 @@ class RegisterActivity : AppCompatActivity() {
                     )
                     Toast.makeText(baseContext, "Created user success", Toast.LENGTH_SHORT).show()
                     uploadImageToFirebaseStorage()
-                    startActivityLogin()
+                    finishActivityRegister()
                     return@addOnCompleteListener
                 }
             }.addOnFailureListener {
@@ -102,9 +102,8 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun startActivityLogin() {
-        val logInIntent = Intent(this, LogInActivity::class.java)
-        startActivity(logInIntent)
+    private fun finishActivityRegister() {
+        finish()
     }
 
     private fun uploadImageToFirebaseStorage() {
