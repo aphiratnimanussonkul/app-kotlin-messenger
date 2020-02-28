@@ -28,6 +28,7 @@ tools:context=".LogInActivity">
         android:background="@drawable/rounded_edit_text_register_login"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        android:inputType="textPassword"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="@+id/email_login"
         app:layout_constraintEnd_toEndOf="@+id/email_login"
