@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.math.sign
 
 class LatestMessageActivity : AppCompatActivity() {
 
@@ -19,6 +21,19 @@ class LatestMessageActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.sign_out_menu -> {
+                FirebaseAuth.getInstance().signOut()
+                startLogInActivity()
+            }
+            R.id.new_message_menu -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun verifyUserIsLoggedIn() {
