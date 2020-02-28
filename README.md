@@ -1,7 +1,7 @@
-#### Add Firebase to your Android app
-##### 1. Create Firebase project
-##### 2. Add Firebase to your Android app
-###### 2.1 Register app
+### Add Firebase to your Android app
+#### 1. Create Firebase project
+#### 2. Add Firebase to your Android app
+##### 2.1 Register app
 * Open file build.gradle (Module: app)
 * Check at android.defaultConfig.applictionId "com.example.app_kotlin_messenger"
 >Copy "com.example.app_kotlin_messenger" 
@@ -24,3 +24,6 @@
 ### Firebase Authentication
 * Open file build.gradle(Module :app) 
 * Check at dependencies add "implementation 'com.google.firebase:firebase-auth:19.2.0'"
+### Firebase Storage
+* At Firebase Storage edit rule "allow read, write"
+* Check at dependencies add "implementation 'com.google.firebase:firebase-storage:19.1.1'"
