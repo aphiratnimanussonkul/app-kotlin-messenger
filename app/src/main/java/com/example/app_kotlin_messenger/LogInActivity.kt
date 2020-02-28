@@ -15,7 +15,7 @@ class LogInActivity: AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         back_to_register.setOnClickListener {
-            finish()
+            startActivityRegister()
         }
 
         button_login.setOnClickListener {
@@ -56,6 +56,11 @@ class LogInActivity: AppCompatActivity() {
     private fun startActivityLatestMessageActivity() {
         val intent = Intent(this, LatestMessageActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
+
+    private fun startActivityRegister() {
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
 }
