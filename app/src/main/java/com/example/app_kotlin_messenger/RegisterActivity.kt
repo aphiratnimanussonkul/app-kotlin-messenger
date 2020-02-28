@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     private var selectPhotoUri: Uri? = null
 
@@ -28,12 +28,12 @@ class MainActivity : AppCompatActivity() {
 
 
         already_have_account.setOnClickListener {
-            Log.d("Main Activity", "Already have account")
+            Log.d("RegisterActivity", "Already have account")
             startActivityLogin()
         }
 
         button_select_photo.setOnClickListener {
-            Log.d("Main Activity", "Try to show photo selector")
+            Log.d("RegisterActivity", "Try to show photo selector")
             val intentSelectPhoto = Intent(Intent.ACTION_PICK)
             intentSelectPhoto.type = "image/*"
             startActivityForResult(intentSelectPhoto, 0)
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     Log.d(
-                        "Main Activity",
+                        "RegisterActivity",
                         "Created user with email and password: success uid: ${it.result!!.user!!.uid}"
                     )
                     Toast.makeText(baseContext, "Created user success", Toast.LENGTH_SHORT).show()
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                     return@addOnCompleteListener
                 }
             }.addOnFailureListener {
-                Log.w("Main Activity", "Created user with email and password: failed")
+                Log.w("RegisterActivity", "Created user with email and password: failed")
                 Toast.makeText(baseContext, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
                 return@addOnFailureListener
             }
